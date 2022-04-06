@@ -1,18 +1,19 @@
+using System;
 using UnityEngine;
 
-namespace NWH.DWP2.DefaultWater
+namespace UnityStandardAssets.Water
 {
     [RequireComponent(typeof(WaterBase))]
     [ExecuteInEditMode]
     public class SpecularLighting : MonoBehaviour
     {
-        public  Transform specularLight;
+        public Transform specularLight;
         private WaterBase m_WaterBase;
 
 
         public void Start()
         {
-            m_WaterBase = (WaterBase) gameObject.GetComponent(typeof(WaterBase));
+            m_WaterBase = (WaterBase)gameObject.GetComponent(typeof(WaterBase));
         }
 
 
@@ -20,7 +21,7 @@ namespace NWH.DWP2.DefaultWater
         {
             if (!m_WaterBase)
             {
-                m_WaterBase = (WaterBase) gameObject.GetComponent(typeof(WaterBase));
+                m_WaterBase = (WaterBase)gameObject.GetComponent(typeof(WaterBase));
             }
 
             if (specularLight && m_WaterBase.sharedMaterial)
