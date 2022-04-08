@@ -71,7 +71,7 @@ namespace NWH.Common.Cameras
 
             OnMultiplayerInstanceTypeChanged();
 
-            _vehicle.onSetMultiplayerInstanceType?.AddListener(OnMultiplayerInstanceTypeChanged);
+            _vehicle.onSetMultiplayerInstanceType.AddListener(OnMultiplayerInstanceTypeChanged);
         }
 
 

@@ -184,6 +184,7 @@ namespace NWH
 
         public virtual void SetMultiplayerInstanceType(MultiplayerInstanceType instanceType, bool isKinematic = true)
         {
+            _multiplayerInstanceType = instanceType;
             onSetMultiplayerInstanceType.Invoke();
         }
     }
