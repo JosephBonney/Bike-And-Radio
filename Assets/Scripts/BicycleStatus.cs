@@ -1,44 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 using SBPScripts;
 
 public class BicycleStatus : MonoBehaviour
 {
-    public bool isRidingBike = true;
+    public bool onBike = true;
     public GameObject cyclist;
-    public BoxCollider Triggger;
-    public BicycleController BC;
-
+    [Header("Box Collider")]
+    public GameObject collisionBox;
+    bool prevOnBike;
+    BicycleController bicycleController;
     // Start is called before the first frame update
     void Start()
     {
-        BC = gameObject.GetComponent<BicycleController>();
+        bicycleController = GetComponent<BicycleController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        RideBike();
-    }
-
-    public void RideBike()
-    {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(onBike != prevOnBike)
         {
-            if (isRidingBike == true)
+            if(onBike)
             {
-                Debug.Log("Key Pressed, Off Bike");
-                BC.enabled = false;
-                cyclist.SetActive(false);
-            }
-            if (isRidingBike == false)
-            {
-                Debug.Log("Key Pressed, On Bike");
-                BC.enabled = true;
+                bicycleController.enabled = true;
                 cyclist.SetActive(true);
+                bicycleController.fPhysicsWheel.GetComponent<SphereCollider>().enabled = true;
+                bicycleController.rPhysicsWheel.GetComponent<SphereCollider>().enabled = true;
+                collisionBox.GetComponent<BoxCollider>().enabled = false;
+                
+            }
+            else
+            {
+                bicycleController.rb.centerOfMass = GetComponent<BoxCollider>().center;
+                bicycleController.enabled = false;
+                cyclist.SetActive(false);
+                bicycleController.fPhysicsWheel.GetComponent<SphereCollider>().enabled = false;
+                bicycleController.rPhysicsWheel.GetComponent<SphereCollider>().enabled = false;
+                collisionBox.GetComponent<BoxCollider>().enabled = true;
+
             }
         }
+        prevOnBike = onBike;
+        
     }
 }

@@ -95,7 +95,7 @@ namespace SBPScripts
         float oscillationSteerEffect;
         [HideInInspector]
         public float cycleOscillation;
-        Rigidbody rb, fWheelRb, rWheelRb;
+        public Rigidbody rb, fWheelRb, rWheelRb;
         float turnAngle;
         float xQuat, zQuat;
         [HideInInspector]
